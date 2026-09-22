@@ -1,0 +1,14 @@
+<Application x:Class="SelfSwitch.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:SelfSwitch"
+             ShutdownMode="OnExplicitShutdown">
+    <!-- 不使用 StartupUri：启动流程在 App.xaml.cs 的 OnStartup 中显式控制 -->
+    <Application.Resources>
+        <Style TargetType="TextBlock" x:Key="FieldLabel">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="0,0,10,0" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+        </Style>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,52 @@
+<Window x:Class="SelfSwitch.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="SelfSwitch"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        ShowInTaskbar="False"
+        Topmost="True"
+        ResizeMode="NoResize"
+        SizeToContent="WidthAndHeight"
+        WindowStartupLocation="Manual"
+        ShowActivated="False"
+        Focusable="False"
+        SnapsToDevicePixels="True"
+        UseLayoutRounding="True"
+        SourceInitialized="Window_SourceInitialized"
+        Loaded="Window_Loaded"
+        SizeChanged="Window_SizeChanged">
+
+    <!-- 整个 Border 就是那个悬浮按钮：无边框、半透明、永远置顶、无动画
+         单击 = 切换窗口；位置在「配置界面 → 按钮位置 → 调整位置」里调（v1.11.0 起不再在按钮上拖动） -->
+    <Border x:Name="RootBorder"
+            CornerRadius="10"
+            Background="#D91A1A1A"
+            BorderBrush="#8CFFFFFF"
+            BorderThickness="1"
+            Cursor="Hand"
+            MouseLeftButtonDown="RootBorder_MouseLeftButtonDown"
+            MouseLeftButtonUp="RootBorder_MouseLeftButtonUp"
+            MouseEnter="RootBorder_MouseEnter"
+            MouseLeave="RootBorder_MouseLeave">
+
+        <Border.ContextMenu>
+            <ContextMenu>
+                <MenuItem Header="打开配置(_C)" Click="MenuConfig_Click" />
+                <Separator />
+                <MenuItem Header="退出程序(_X)" Click="MenuExit_Click" />
+            </ContextMenu>
+        </Border.ContextMenu>
+
+        <TextBlock x:Name="TxtButton"
+                   Text="切换"
+                   Foreground="White"
+                   FontFamily="Microsoft YaHei UI"
+                   FontSize="15"
+                   FontWeight="SemiBold"
+                   Margin="20,10"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center" />
+    </Border>
+</Window>

@@ -1,0 +1,214 @@
+<Window x:Class="SelfSwitch.ConfigWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="SelfSwitch 配置"
+        Width="880"
+        SizeToContent="Height"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Topmost="True"
+        FontFamily="Microsoft YaHei UI"
+        FontSize="13">
+
+    <Grid Margin="18,16,18,14">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="196" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- 0 Chrome 路径 -->
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Chrome 完整路径" VerticalAlignment="Center" Margin="0,0,10,10" />
+        <Grid Grid.Row="0" Grid.Column="1" Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Column="0" x:Name="TxtChrome" Height="26" VerticalContentAlignment="Center" />
+            <Button Grid.Column="1" x:Name="BtnBrowseChrome" Content="浏览..." Width="72" Height="26" Margin="8,0,0,0"
+                    Click="BtnBrowseChrome_Click" />
+            <Button Grid.Column="2" x:Name="BtnPickChrome" Content="取当前窗口" Width="96" Height="26" Margin="8,0,0,0"
+                    Click="BtnPickChrome_Click"
+                    ToolTip="自动填入最近一次出现在前台的窗口的进程完整路径（本工具自己不算）。用法：先把 Chrome 点到最前面，再回来点这个按钮" />
+        </Grid>
+
+        <!-- 1 目标 EXE 路径 -->
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="目标 EXE 完整路径" VerticalAlignment="Center" Margin="0,0,10,10" />
+        <Grid Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Column="0" x:Name="TxtTarget" Height="26" VerticalContentAlignment="Center" />
+            <Button Grid.Column="1" x:Name="BtnBrowseTarget" Content="浏览..." Width="72" Height="26" Margin="8,0,0,0"
+                    Click="BtnBrowseTarget_Click" />
+            <Button Grid.Column="2" x:Name="BtnPickTarget" Content="取当前窗口" Width="96" Height="26" Margin="8,0,0,0"
+                    Click="BtnPickTarget_Click"
+                    ToolTip="自动填入最近一次出现在前台的窗口的进程完整路径（本工具自己不算）。用法：先把目标程序点到最前面，再回来点这个按钮" />
+        </Grid>
+
+        <!-- 2 标题关键字 -->
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="窗口标题关键字(可选)" VerticalAlignment="Center" Margin="0,0,10,10" />
+        <TextBox Grid.Row="2" Grid.Column="1" x:Name="TxtTitleKeyword" Height="26" VerticalContentAlignment="Center"
+                 Margin="0,0,0,10" ToolTip="同一程序有多个窗口时用来区分；留空表示只用路径识别" />
+
+        <!-- 3 按钮文字：当前是 Chrome -->
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="按钮文字：当前是 Chrome" VerticalAlignment="Center" Margin="0,0,10,10" />
+        <TextBox Grid.Row="3" Grid.Column="1" x:Name="TxtTextWhenChrome" Height="26" VerticalContentAlignment="Center"
+                 Margin="0,0,0,10" ToolTip="此时点按钮会切到目标 EXE，建议写“切到目标程序”这类指向动作的文字" />
+
+        <!-- 4 按钮文字：当前是目标程序 -->
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="按钮文字：当前是目标程序" VerticalAlignment="Center" Margin="0,0,10,10" />
+        <TextBox Grid.Row="4" Grid.Column="1" x:Name="TxtTextWhenTarget" Height="26" VerticalContentAlignment="Center"
+                 Margin="0,0,0,10" ToolTip="此时点按钮会切到 Chrome，建议写“切到浏览器”这类文字" />
+
+        <!-- 5 按钮文字：其它情况 -->
+        <TextBlock Grid.Row="5" Grid.Column="0" Text="按钮文字：其它情况" VerticalAlignment="Center" Margin="0,0,10,10" />
+        <TextBox Grid.Row="5" Grid.Column="1" x:Name="TxtTextOther" Height="26" VerticalContentAlignment="Center"
+                 Margin="0,0,0,10" ToolTip="前台既不是 Chrome 也不是目标程序时显示；若开启了「自动隐藏」，这时按钮会直接藏起来，看不到这段文字" />
+
+        <!-- 6 透明度 -->
+        <TextBlock Grid.Row="6" Grid.Column="0" Text="悬浮按钮透明度" VerticalAlignment="Center" Margin="0,0,10,10" />
+        <Grid Grid.Row="6" Grid.Column="1" Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Slider Grid.Column="0" x:Name="SldOpacity" Minimum="0.3" Maximum="1.0" TickFrequency="0.05"
+                    IsSnapToTickEnabled="True" VerticalAlignment="Center"
+                    ValueChanged="SldOpacity_ValueChanged" />
+            <TextBlock Grid.Column="1" x:Name="TxtOpacityValue" Width="46" Text="0.75"
+                       VerticalAlignment="Center" HorizontalAlignment="Right" TextAlignment="Right" />
+        </Grid>
+
+        <!-- 7 按钮位置：锚点 + X/Y 偏移 -->
+        <TextBlock Grid.Row="7" Grid.Column="0" Text="按钮位置（锚点 / 偏移）" VerticalAlignment="Center" Margin="0,0,10,10" />
+        <StackPanel Grid.Row="7" Grid.Column="1" Margin="0,0,0,10">
+            <StackPanel Orientation="Horizontal">
+                <ComboBox x:Name="CmbAnchor" Width="134" Height="26">
+                    <ComboBoxItem Content="右下角（默认）" />
+                    <ComboBoxItem Content="左下角" />
+                    <ComboBoxItem Content="右上角" />
+                    <ComboBoxItem Content="左上角" />
+                </ComboBox>
+                <TextBlock Text="X偏移" VerticalAlignment="Center" Margin="12,0,4,0" />
+                <TextBox x:Name="TxtOffsetX" Width="62" Height="26" VerticalContentAlignment="Center"
+                         ToolTip="相对所选角的内缩像素。正值向屏幕内侧，负值可压到任务栏上。注意：用「调整位置」调过位置后，这里的锚点与偏移不再生效" />
+                <TextBlock Text="Y偏移" VerticalAlignment="Center" Margin="12,0,4,0" />
+                <TextBox x:Name="TxtOffsetY" Width="62" Height="26" VerticalContentAlignment="Center"
+                         ToolTip="相对所选角的内缩像素。正值向屏幕内侧，负值可压到任务栏上。注意：用「调整位置」调过位置后，这里的锚点与偏移不再生效" />
+                <TextBlock Text="px" VerticalAlignment="Center" Margin="4,0,0,0" Foreground="#666666" />
+            </StackPanel>
+            <!-- 按钮行放在前面（提示文字太长会把按钮挤出窗口，别再放同一行） -->
+            <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
+                <Button x:Name="BtnPlaceButton" Content="调整位置" Width="88" Height="26" FontWeight="SemiBold"
+                        Click="BtnPlaceButton_Click"
+                        ToolTip="点它后配置窗口会隐藏，悬浮按钮跟着鼠标走；移到想要的位置单击一下确认，按 Esc 放弃" />
+                <Button x:Name="BtnResetPosition" Content="复位到锚点" Width="96" Height="26" Margin="8,0,0,0"
+                        Click="BtnResetPosition_Click"
+                        ToolTip="清除「调整后的位置」，回到上面「锚点 + 偏移」计算出来的位置" />
+                <TextBlock x:Name="TxtPositionState" Foreground="#666666" VerticalAlignment="Center"
+                           Margin="12,0,0,0" TextWrapping="Wrap" MaxWidth="360"
+                           Text="点「调整位置」→ 配置窗口隐藏、按钮跟着鼠标走 → 单击一下确认（Esc 取消）。" />
+            </StackPanel>
+        </StackPanel>
+
+        <!-- 8 Chrome 显示方式 -->
+        <TextBlock Grid.Row="8" Grid.Column="0" Text="Chrome 显示方式" VerticalAlignment="Center" Margin="0,0,10,10"
+                   ToolTip="切换回 Chrome 时，怎样摆放它的窗口" />
+        <StackPanel Grid.Row="8" Grid.Column="1" Orientation="Horizontal" Margin="0,0,0,10">
+            <ComboBox x:Name="CmbChromeMode" Width="214" Height="26"
+                      ToolTip="F11=Chrome 原生全屏；覆盖任务栏=强制铺满并置顶" />
+            <TextBlock Text="区域" VerticalAlignment="Center" Margin="10,0,4,0" />
+            <TextBox x:Name="TxtChromeRect" Width="152" Height="26" VerticalContentAlignment="Center"
+                     ToolTip="仅当选「自定义区域」时生效。格式 x,y,w,h，可用像素或百分比。例：0,0,50%,100% = 左半屏；0,0,1280,720 = 固定尺寸" />
+        </StackPanel>
+
+        <!-- 9 目标 EXE 显示方式 -->
+        <TextBlock Grid.Row="9" Grid.Column="0" Text="目标 EXE 显示方式" VerticalAlignment="Center" Margin="0,0,10,10"
+                   ToolTip="切换回目标程序时，怎样摆放它的窗口" />
+        <StackPanel Grid.Row="9" Grid.Column="1" Orientation="Horizontal" Margin="0,0,0,10">
+            <ComboBox x:Name="CmbTargetMode" Width="214" Height="26"
+                      ToolTip="F11 / Alt+Enter 需要目标程序自身支持，不支持时会自动回退为覆盖任务栏" />
+            <TextBlock Text="区域" VerticalAlignment="Center" Margin="10,0,4,0" />
+            <TextBox x:Name="TxtTargetRect" Width="152" Height="26" VerticalContentAlignment="Center"
+                     ToolTip="仅当选「自定义区域」时生效。默认 50%,0,50%,100% = 右半屏，配合 Chrome 的左半屏就是左右分屏" />
+        </StackPanel>
+
+        <!-- 10 当前窗口处理 -->
+        <TextBlock Grid.Row="10" Grid.Column="0" Text="切换时当前窗口" VerticalAlignment="Center" Margin="0,0,10,10" />
+        <ComboBox Grid.Row="10" Grid.Column="1" x:Name="CmbPrevious" Height="26" Margin="0,0,0,10">
+            <ComboBoxItem Content="最小化（推荐）" />
+            <ComboBoxItem Content="留在后台（取消置顶并让出焦点）" />
+        </ComboBox>
+
+        <!-- 11 严格模式 -->
+        <CheckBox Grid.Row="11" Grid.Column="1" x:Name="ChkStrict"
+                  Content="严格模式：只在前台是 Chrome / 目标程序时才切换（其它情况点按钮无反应）"
+                  Margin="0,0,0,8"
+                  ToolTip="关闭后：当前台是其它程序时，按上次切换到的程序判断方向，无记录则切到 Chrome" />
+
+        <!-- 12 其它程序时隐藏 -->
+        <CheckBox Grid.Row="12" Grid.Column="1" x:Name="ChkHideWhenOther"
+                  Content="其它程序在前台时自动隐藏悬浮按钮"
+                  Margin="0,0,0,8"
+                  ToolTip="隐藏期间托盘图标仍在：右键托盘图标可打开配置 / 退出程序；双击托盘图标等同于点悬浮按钮。注意：取消勾选「严格模式」后本项会自动被忽略——否则非严格模式下按钮有用却点不到" />
+
+        <!-- 13 忽略系统壳窗口 -->
+        <CheckBox Grid.Row="13" Grid.Column="1" x:Name="ChkIgnoreShell"
+                  Content="忽略系统通知横幅 / 任务栏抢前台（按钮状态与切换判断都不受影响）"
+                  Margin="0,0,0,8"
+                  ToolTip="开启后：系统通知弹出、点任务栏、打开操作中心都不会让按钮隐藏或让切换被误判为“其它程序”。建议保持开启" />
+
+        <!-- 14 自启 -->
+        <CheckBox Grid.Row="14" Grid.Column="1" x:Name="ChkAutoStart"
+                  Content="开机自启（写入 HKCU\Software\Microsoft\Windows\CurrentVersion\Run）"
+                  Margin="0,0,0,10" />
+
+        <!-- 15 快速切换快捷键 -->
+        <TextBlock Grid.Row="15" Grid.Column="0" Text="快速切换快捷键" VerticalAlignment="Center" Margin="0,0,10,10"
+                   ToolTip="设置后不用点按钮，直接按键就能切换（和点按钮完全等效）" />
+        <StackPanel Grid.Row="15" Grid.Column="1" Orientation="Horizontal" Margin="0,0,0,10">
+            <CheckBox x:Name="ChkHotkey" Content="启用" VerticalAlignment="Center" Margin="0,0,10,0" />
+            <TextBox x:Name="TxtHotkey" Width="146" Height="26" VerticalContentAlignment="Center"
+                     IsReadOnly="True" Cursor="IBeam"
+                     GotKeyboardFocus="TxtHotkey_GotKeyboardFocus"
+                     PreviewKeyDown="TxtHotkey_PreviewKeyDown"
+                     ToolTip="点进这个框，直接按你想要的组合键即可（例如按住 Ctrl 再按 Alt+S）。必须含 Ctrl/Alt/Shift/Win，或单独一个 F1~F12；按 Backspace 可清空" />
+            <TextBlock Text="点框内按组合键；Backspace 清空" VerticalAlignment="Center" Margin="10,0,0,0"
+                       Foreground="#666666" />
+        </StackPanel>
+
+        <!-- 16 说明 -->
+        <TextBlock Grid.Row="16" Grid.Column="1" TextWrapping="Wrap" Foreground="#666666" Margin="0,0,0,12"
+                   Text="说明：本工具不启动任何程序，只切换「已打开」的窗口；路径必须是完整启动路径（绝对路径 + 文件名，建议用「取当前窗口」按钮自动填）。Chrome 与目标程序各自可选显示方式：发 F11 / 覆盖任务栏 / 最大化 / 窗口化 / 自定义区域（可做左右分屏）/ 保持当前状态；选「自定义区域」时填 区域 里的 x,y,w,h，例如 0,0,50%,100% 是左半屏、50%,0,50%,100% 是右半屏。按钮文字会实时跟随前台窗口变化，显示的是「点下去会切到哪里」。若按钮被输入法状态条 / 系统通知横幅这类浮窗盖住、点着没反应，用「按钮位置」里的「调整位置」把按钮挪开即可。" />
+
+        <!-- 17 按钮 -->
+        <StackPanel Grid.Row="17" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="BtnSave" Content="保存" Width="88" Height="30" IsDefault="True" Click="BtnSave_Click" />
+            <Button x:Name="BtnCancel" Content="取消" Width="88" Height="30" Margin="10,0,0,0" IsCancel="True"
+                    Click="BtnCancel_Click" />
+        </StackPanel>
+    </Grid>
+</Window>

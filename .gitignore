@@ -1,0 +1,12 @@
+# 编译产物
+bin/
+obj/
+*.exe
+*.pdb
+*.user
+
+# 运行时生成（配置与日志按机器不同，不入库）
+SelfSwitch/config.json
+SelfSwitch/app.log
+SelfSwitch/app.old.log
+*.bad

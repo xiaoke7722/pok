@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <AssemblyName>SelfSwitch</AssemblyName>
+    <RootNamespace>SelfSwitch</RootNamespace>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Version>1.11.1</Version>
+    <FileVersion>1.11.1.0</FileVersion>
+    <AssemblyVersion>1.11.1.0</AssemblyVersion>
+    <Product>SelfSwitch 窗口切换小工具</Product>
+    <Company>Beijing Createch</Company>
+    <Copyright>Copyright © 2026</Copyright>
+    <SatelliteResourceLanguages>zh-Hans;en</SatelliteResourceLanguages>
+
+    <!-- 允许在非 Windows 机器上交叉编译（Windows 上编译时该属性无副作用） -->
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+
+    <!-- 单文件发布相关（也可只在命令行 /p: 传入） -->
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <SelfContained>true</SelfContained>
+    <PublishSingleFile>true</PublishSingleFile>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+    <PublishTrimmed>false</PublishTrimmed>
+    <DebugType>none</DebugType>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <!-- WFAC010：WPF 工程同时引用 WinForms 时对 manifest 里 DPI 节点的提示，可忽略 -->
+    <NoWarn>$(NoWarn);WFAC010</NoWarn>
+  </PropertyGroup>
+
+</Project>
